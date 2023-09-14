@@ -44,7 +44,7 @@ class RateCurrency(APIView):
         """
         from_val = request.GET.get("base", None)
         if from_val is None:
-            return Response({'error': 'add "from" param'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'error': 'add "base" param'}, status=status.HTTP_404_NOT_FOUND)
         to_val = request.GET.get('to', None)
         if to_val is None:
             return Response({'error': 'add "to" param'}, status=status.HTTP_404_NOT_FOUND)
