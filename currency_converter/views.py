@@ -9,7 +9,6 @@ import os
 API_URL = 'https://api.currencyapi.com/v3/latest?'
 API_KEY = os.getenv('API_KEY')
 header_api = {'apikey': API_KEY}
-# /api/rates?from=USD&to=RUB&value=1
 
 
 def get_exchange_rate(from_cur: str, to_cur: str) -> float:
