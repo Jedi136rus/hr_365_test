@@ -1,14 +1,13 @@
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
 import requests
 from rest_framework.views import APIView
 from drf_yasg.utils import swagger_auto_schema
 from currency_converter.serializers import SwaggerGETdashSerializer
+import os
 
 API_URL = 'https://api.currencyapi.com/v3/latest?'
-RATES = 'base_currency=EUR&currencies=USD'
-API_KEY = 'cur_live_XKf0Vm1furR8r1Q8WolbFzwqEzKv6bRrCuuaRvlO'
+API_KEY = os.getenv('API_KEY')
 header_api = {'apikey': API_KEY}
 # /api/rates?from=USD&to=RUB&value=1
 
@@ -33,41 +32,6 @@ def get_exchange_rate(from_cur: str, to_cur: str) -> float:
         return -1
     else:
         raise KeyError
-
-
-# @swagger_auto_schema(query_serializer=SwaggerGETdashSerializer)
-# @api_view(['GET'])
-# def convert_value(request):
-#     """
-#     Производит обмен валют
-#     from - код исходгой валюты (например USD)
-#     to - код конвертируемой валюты (например RUB)
-#     value - количество конвертируемой валюты
-#     """
-#     from_val = request.GET.get("from", None)
-#     if from_val is None:
-#         return Response({'error': 'add "from" param'}, status=status.HTTP_404_NOT_FOUND)
-#     to_val = request.GET.get('to', None)
-#     if to_val is None:
-#         return Response({'error': 'add "to" param'}, status=status.HTTP_404_NOT_FOUND)
-#     cur_val = request.GET.get('value', None)
-#     if cur_val is None:
-#         return Response({'error': 'add "value" param'}, status=status.HTTP_404_NOT_FOUND)
-#     try:
-#         cur_val = float(cur_val)
-#     except ValueError:
-#         return Response({'error': 'param "value" must be int or float'})
-#
-#     try:
-#         res = get_exchange_rate(from_cur=from_val, to_cur=to_val)*cur_val
-#     except KeyError:
-#         return Response({'error': 'incorrect input'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-#     if res < 0:
-#         return Response({'error': 'please use correct currency code'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-#     data = {
-#         'result': round(res, 2),
-#     }
-#     return Response(data, status=status.HTTP_200_OK)
 
 
 class RateCurrency(APIView):
