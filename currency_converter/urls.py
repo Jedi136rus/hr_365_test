@@ -3,5 +3,5 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path("rates", views.convert_value),
+    path("rates", views.RateCurrency.as_view()),
 ]

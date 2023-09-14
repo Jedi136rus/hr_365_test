@@ -6,10 +6,9 @@ from rest_framework import permissions
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="SUPERSET API",
+      title="CURRENCY",
       default_version='v1',
-      description="Промежуточное API для работы клиента с SUPERSET",
-      terms_of_service="http://10.237.0.204:8088/superset/welcome/",
+      description="Тестовое задание",
    ),
    public=True,
    permission_classes=(permissions.AllowAny,),
