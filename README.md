@@ -58,7 +58,7 @@ GET /api/rates?base=USD&to=RUB&value=1
 
 
 ### Далее можено делать запрос по эндпоинту 
-http://localhost:8000/api/rates?from=USD&to=RUB&value=1
+http://localhost:8000/api/rates?base=USD&to=RUB&value=1
 
 <img src="drf.png">
 
